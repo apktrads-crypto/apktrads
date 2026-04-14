@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "name": "Organic Basmati Rice",
+    "category": "Grains",
+    "price": 250,
+    "stock": 100,
+    "image_url": ""
+  },
+  {
+    "id": "2",
+    "name": "Pure Turmeric Powder",
+    "category": "Spices",
+    "price": 80,
+    "stock": 50,
+    "image_url": ""
+  },
+  {
+    "id": "3",
+    "name": "Desi Ghee",
+    "category": "Dairy",
+    "price": 600,
+    "stock": 20,
+    "image_url": ""
+  },
+  {
+    "id": "1776193990617",
+    "name": "Vintage Tea",
+    "category": "Grains",
+    "price": 150,
+    "stock": 50,
+    "image_url": ""
+  },
+  {
+    "id": "1776194255163",
+    "name": "Pure Saffron",
+    "category": "Spices",
+    "price": 1200,
+    "stock": 15,
+    "image_url": ""
+  },
+  {
+    "id": "1776194274631",
+    "name": "Pure Saffron",
+    "category": "Grains",
+    "price": 1200,
+    "stock": 15,
+    "image_url": ""
+  },
+  {
+    "id": "1776194298997",
+    "name": "Pure Saffron",
+    "category": "Spices",
+    "price": 1200,
+    "stock": 15,
+    "image_url": ""
+  },
+  {
+    "id": "1776194317929",
+    "name": "Pure Saffron",
+    "category": "Grains",
+    "price": 1200,
+    "stock": 15,
+    "image_url": ""
+  },
+  {
+    "id": "1776194327835",
+    "name": "Pure Saffron",
+    "category": "Spices",
+    "price": 1200,
+    "stock": 15,
+    "image_url": ""
+  }
+]
