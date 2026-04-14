@@ -3,8 +3,7 @@ import { ShoppingCart, LayoutDashboard, Home } from 'lucide-react';
 
 export default function Navbar({ cartCount, onNavigate, currentView }) {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 shadow-sm border-b transition-all duration-300" style={{backgroundColor: 'rgba(var(--bg), 0.9)', backdropFilter: 'blur(10px)', borderBottomColor: 'rgba(var(--primary), 0.1)'}}>
-      {/* Fallback inline styles for themes using standard variables */}
+    <nav className="fixed top-0 left-0 right-0 z-50 shadow-sm border-b transition-all duration-300 bg-white" style={{ borderBottomColor: 'rgba(0,0,0,0.1)' }}>
       <style>{`
         .nav-link-active { color: var(--primary); font-weight: 700; border-bottom: 2px solid var(--primary); }
         .nav-link { color: var(--text); opacity: 0.7; }
@@ -33,8 +32,8 @@ export default function Navbar({ cartCount, onNavigate, currentView }) {
               <span className="hidden sm:inline">Admin</span>
             </button>
             
-            <div className="relative group cursor-pointer">
-              <div className="p-2 rounded-full transition-colors hover:bg-gray-100" style={{color: 'var(--primary)'}}>
+            <div className="relative group cursor-pointer" style={{color: 'var(--primary)'}}>
+              <div className="p-2 rounded-full transition-colors hover:bg-gray-100">
                 <ShoppingCart size={24} />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg transform transition-transform group-hover:scale-110" style={{backgroundColor: 'var(--secondary)'}}>

@@ -2,15 +2,31 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 const PORT = 3000;
 const DATA_FILE = path.join(__dirname, 'data.json');
 const CATEGORIES_FILE = path.join(__dirname, 'categories.json');
 const SETTINGS_FILE = path.join(__dirname, 'settings.json');
+const UPLOADS_DIR = path.join(__dirname, 'uploads');
+
+// Configure Multer Storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, UPLOADS_DIR);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(UPLOADS_DIR));
 
 // Get all products
 app.get('/api/products', (req, res) => {
@@ -128,6 +144,15 @@ app.put('/api/settings', (req, res) => {
   fs.writeFile(SETTINGS_FILE, JSON.stringify(req.body, null, 2), (err) => {
     res.json(req.body);
   });
+});
+
+// IMAGE UPLOAD ROUTE
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  const fileUrl = `http://localhost:3000/uploads/${req.file.filename}`;
+  res.json({ url: fileUrl });
 });
 
 app.listen(PORT, () => {
