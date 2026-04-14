@@ -2,5 +2,7 @@
   "Grains",
   "Spices",
   "Dairy",
-  "Cleaning"
+  "Cleaning",
+  "TerminalTest",
+  "NewFestCategory"
 ]
