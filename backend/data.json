@@ -70,5 +70,29 @@
     "price": 1200,
     "stock": 15,
     "image_url": ""
+  },
+  {
+    "id": "1776196029802",
+    "name": "pmp fast clean toilate expert",
+    "category": "Dairy",
+    "price": 95,
+    "stock": 200,
+    "image_url": ""
+  },
+  {
+    "id": "1776196496585",
+    "name": "Glass Cleaner",
+    "category": "Cleaning",
+    "price": 120,
+    "stock": 40,
+    "image_url": ""
+  },
+  {
+    "id": "1776196809922",
+    "name": "Test Cleaner",
+    "category": "Cleaning",
+    "price": 99,
+    "stock": 10,
+    "image_url": ""
   }
 ]
