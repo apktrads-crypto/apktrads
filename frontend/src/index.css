@@ -4,10 +4,69 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #14452F;
+  --secondary: #2F6B5C;
+  --bg: #F9F6F0;
+  --text: #111827;
+  --accent: #D1D5DB;
+}
+
+.theme-diwali {
+  --primary: #D32F2F;
+  --secondary: #FBC02D;
+  --bg: #FFF8E1;
+  --text: #3E2723;
+  --accent: #FFE082;
+}
+
+.theme-holi {
+  --primary: #E91E63;
+  --secondary: #00BCD4;
+  --bg: #FCE4EC;
+  --text: #4A148C;
+  --accent: #F8BBD0;
+}
+
+.theme-eid {
+  --primary: #1B5E20;
+  --secondary: #C5A059;
+  --bg: #F1F8E9;
+  --text: #1B5E20;
+  --accent: #C8E6C9;
+}
+
+.theme-christmas {
+  --primary: #B71C1C;
+  --secondary: #2E7D32;
+  --bg: #FFEBEE;
+  --text: #004D40;
+  --accent: #FFCDD2;
+}
+
+.theme-republic {
+  --primary: #FB8C00;
+  --secondary: #128807;
+  --bg: #FFFFFF;
+  --text: #000080;
+  --accent: #E0E0E0;
+}
+
 body {
-  @apply bg-cream font-body text-gray-900;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-heading text-forestGreen;
+  font-family: 'Playfair Display', serif;
+  color: var(--primary);
 }
+
+.brand-text { color: var(--primary); }
+.brand-bg { background-color: var(--primary); }
+.brand-border { border-color: var(--primary); }
+
+.secondary-text { color: var(--secondary); }
+.secondary-bg { background-color: var(--secondary); }

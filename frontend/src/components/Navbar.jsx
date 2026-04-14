@@ -3,38 +3,45 @@ import { ShoppingCart, LayoutDashboard, Home } from 'lucide-react';
 
 export default function Navbar({ cartCount, onNavigate, currentView }) {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md shadow-sm border-b border-teal/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 shadow-sm border-b transition-all duration-300" style={{backgroundColor: 'rgba(var(--bg), 0.9)', backdropFilter: 'blur(10px)', borderBottomColor: 'rgba(var(--primary), 0.1)'}}>
+      {/* Fallback inline styles for themes using standard variables */}
+      <style>{`
+        .nav-link-active { color: var(--primary); font-weight: 700; border-bottom: 2px solid var(--primary); }
+        .nav-link { color: var(--text); opacity: 0.7; }
+        .nav-link:hover { opacity: 1; color: var(--primary); }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center cursor-pointer" onClick={() => onNavigate('home')}>
-            <span className="font-heading font-black text-2xl text-forestGreen tracking-tight">APK TRADERS</span>
+          <div className="flex items-center cursor-pointer group" onClick={() => onNavigate('home')}>
+            <span className="font-heading font-black text-2xl tracking-tight transition-transform group-hover:scale-105" style={{color: 'var(--primary)'}}>APK TRADERS</span>
           </div>
           
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-6 sm:space-x-8">
             <button 
               onClick={() => onNavigate('home')}
-              className={`font-semibold hover:text-teal transition-colors flex items-center space-x-1 ${currentView === 'home' ? 'text-forestGreen' : 'text-gray-600'}`}
+              className={`flex items-center space-x-1 py-2 transition-all ${currentView === 'home' ? 'nav-link-active' : 'nav-link'}`}
             >
               <Home size={18} />
-              <span>Shop</span>
+              <span className="hidden sm:inline">Shop</span>
             </button>
             <button 
               onClick={() => onNavigate('admin')}
-              className={`font-semibold hover:text-teal transition-colors flex items-center space-x-1 ${currentView === 'admin' ? 'text-forestGreen' : 'text-gray-600'}`}
+              className={`flex items-center space-x-1 py-2 transition-all ${currentView === 'admin' ? 'nav-link-active' : 'nav-link'}`}
             >
               <LayoutDashboard size={18} />
-              <span>Admin</span>
+              <span className="hidden sm:inline">Admin</span>
             </button>
             
-            <div className="relative">
-              <button className="text-forestGreen hover:text-teal transition-colors focus:outline-none">
+            <div className="relative group cursor-pointer">
+              <div className="p-2 rounded-full transition-colors hover:bg-gray-100" style={{color: 'var(--primary)'}}>
                 <ShoppingCart size={24} />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-teal text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  <span className="absolute -top-1 -right-1 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg transform transition-transform group-hover:scale-110" style={{backgroundColor: 'var(--secondary)'}}>
                     {cartCount}
                   </span>
                 )}
-              </button>
+              </div>
             </div>
           </div>
         </div>

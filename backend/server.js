@@ -6,6 +6,8 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 const DATA_FILE = path.join(__dirname, 'data.json');
+const CATEGORIES_FILE = path.join(__dirname, 'categories.json');
+const SETTINGS_FILE = path.join(__dirname, 'settings.json');
 
 app.use(cors());
 app.use(express.json());
@@ -77,6 +79,54 @@ app.delete('/api/products/:id', (req, res) => {
       if (err) return res.status(500).json({ error: 'Failed to save data' });
       res.status(204).send();
     });
+  });
+});
+
+// CATEGORIES ROUTES
+app.get('/api/categories', (req, res) => {
+  fs.readFile(CATEGORIES_FILE, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ error: 'Failed to read categories' });
+    res.json(JSON.parse(data));
+  });
+});
+
+app.post('/api/categories', (req, res) => {
+  const { name } = req.body;
+  fs.readFile(CATEGORIES_FILE, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ error: 'Failed to read categories' });
+    const categories = JSON.parse(data);
+    if (!categories.includes(name)) {
+      categories.push(name);
+      fs.writeFile(CATEGORIES_FILE, JSON.stringify(categories, null, 2), (err) => {
+        if (err) return res.status(500).json({ error: 'Failed' });
+        res.status(201).json(categories);
+      });
+    } else {
+      res.status(400).json({ error: 'Already exists' });
+    }
+  });
+});
+
+app.delete('/api/categories/:name', (req, res) => {
+  const { name } = req.params;
+  fs.readFile(CATEGORIES_FILE, 'utf8', (err, data) => {
+    const categories = JSON.parse(data).filter(c => c !== name);
+    fs.writeFile(CATEGORIES_FILE, JSON.stringify(categories, null, 2), (err) => {
+      res.status(204).send();
+    });
+  });
+});
+
+// SETTINGS/THEME ROUTES
+app.get('/api/settings', (req, res) => {
+  fs.readFile(SETTINGS_FILE, 'utf8', (err, data) => {
+    res.json(JSON.parse(data));
+  });
+});
+
+app.put('/api/settings', (req, res) => {
+  fs.writeFile(SETTINGS_FILE, JSON.stringify(req.body, null, 2), (err) => {
+    res.json(req.body);
   });
 });
 
